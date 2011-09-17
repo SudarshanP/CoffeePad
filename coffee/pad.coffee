@@ -1,0 +1,1 @@
+$(-> $('#pad').click -> alert("pad"))  

@@ -1,0 +1,23 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>
+<meta charset="utf-8" />  
+<title>Blank HTML 5 Template</title>  
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script src="http://jashkenas.github.com/coffee-script/extras/coffee-script.js"></script>  
+    <script type="text/coffeescript">
+      show_message = (msg) -> 
+        $('#message').hide().text(msg).fadeIn 2222,-> $('#message').append('@@@')
+              
+      $ -> show_message "world"
+      $('#message').click -> show_message "you"      
+    </script>
+    <script type="text/coffeescript" src="/coffee/dsl.coffee"></script>  
+    <script type="text/coffeescript" src="/coffee/pad.coffee"></script>
+</head>  
+<body>
+<h1>hello <span id="message"></span></h1>
+<h1 id="pad">hello <span id="dsl_s"></span></h1>
+<h1 id="dsl">hello <span id="dsl_s"></span></h1>
+</body>
+</html>

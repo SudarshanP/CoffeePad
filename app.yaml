@@ -1,0 +1,23 @@
+application: socratictrail
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /coffee
+  static_dir: coffee
+
+- url: /js
+  static_dir: js
+
+- url: /img
+  static_dir: img
+
+- url: /html
+  static_dir: html
+
+- url: /css
+  static_dir: css
+
+- url: .*
+  script: main.py

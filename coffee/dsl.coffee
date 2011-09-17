@@ -1,0 +1,1 @@
+$(-> $('#dsl').click -> alert("dsl"))  
