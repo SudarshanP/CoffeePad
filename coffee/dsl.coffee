@@ -1,24 +1,45 @@
 headings = []
-lastHeading = 0
-out = this;
+
 class H1
+   lastHeading:0
    constructor: (data) ->
+      @sub = []
       @text = data.text
       @rows = data.rows
-      @rows ?= 1 
-   dump: -> @text+":"+@rows
+      @rows ?= 1
+      H1::lastHeading = this 
+   dump: -> 
+      s = ""
+      s += "\n>" + a.dump() for a in @sub
+      @text+":"+@rows+s
 
 h1 = (text,params = {}) -> 
    params.text = text
-   out.lastHeading = new H1 params
-   headings.push out.lastHeading
-   out.lastHeading
+   ret = new H1 params
+   headings.push ret
+   ret
 
-h1 "Simple Text"
+class H2
+   lastSubHeading:0
+   constructor: (data) ->
+      @sub = []
+      @text = data.text
+      @rows = data.rows
+      @rows ?= 1
+      H2::lastSubHeading = this 
+   dump: -> @text+":"+@rows
 
-h1 "Very Long Text"
+h2 = (text,params = {}) -> 
+   params.text = text
+   ret = new H2 params
+   H1::lastHeading.sub.push ret
+   ret
 
-h1 "Very Very Long Text"
+a = h1 "Simple Text"
+
+h2 "Very Long Text"
+
+h2 "Very Very Long Text"
    rows:2
 
-alert lastHeading.dump()
+alert a.dump()
