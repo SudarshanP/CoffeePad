@@ -11,7 +11,7 @@ class H1
    dump: -> 
       s = ""
       s += "\n>" + a.dump() for a in @sub
-      @text+":"+@rows+s
+      "\n"+@text+":"+@rows+s+"\n"
 
 h1 = (text,params = {}) -> 
    params.text = text
@@ -27,7 +27,10 @@ class H2
       @rows = data.rows
       @rows ?= 1
       H2::lastSubHeading = this 
-   dump: -> @text+":"+@rows
+   dump: -> 
+      s = ""
+      s += a.dump() for a in @sub
+      @text+":"+@rows+"\n"+s
 
 h2 = (text,params = {}) -> 
    params.text = text
@@ -35,11 +38,32 @@ h2 = (text,params = {}) ->
    H1::lastHeading.sub.push ret
    ret
 
-a = h1 "Simple Text"
+class Card
+   constructor: (data) ->
+      @text = data.text
+      @width = data.width
+      @width ?= 100
+   dump: -> ">>>"+@text+":"+@width+"\n"
+
+card = (text,params = {}) -> 
+   params.text = text
+   ret = new Card params
+   H2::lastSubHeading.sub.push ret
+   ret
+
+h1 "Simple Text"
 
 h2 "Very Long Text"
-
+card "boo"
+card "foo"
 h2 "Very Very Long Text"
    rows:2
 
-alert a.dump()
+h1 "Simple Text2"
+
+h2 "Very Long Text2"
+
+h2 "Very Very Long Text2"
+   rows:5
+
+alert [h.dump() for h in headings].join()
