@@ -51,11 +51,23 @@ card = (text,params = {}) ->
    H2::lastSubHeading.sub.push ret
    ret
 
+class Youtube extends Card
+   constructor: (data) -> super(data)
+
+youtube = (text,params = {}) -> 
+   params.text = text
+   ret = new Youtube params
+   H2::lastSubHeading.sub.push ret
+   ret
+
 h1 "Simple Text"
 
 h2 "Very Long Text"
 card "boo"
 card "foo"
+youtube "youuuuu"
+   width:50
+
 h2 "Very Very Long Text"
    rows:2
 
